@@ -12,19 +12,19 @@ export default function NotificationToast() {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`pointer-events-auto flex items-center justify-between p-4 rounded-xl border bg-slate-900/95 backdrop-blur-md shadow-2xl transition-all duration-300 transform translate-y-0 ${
+          className={`pointer-events-auto flex items-center justify-between p-4 rounded-xl border bg-dark-800/95 backdrop-blur-md shadow-2xl transition-all duration-300 transform translate-y-0 ${
             toast.type === 'success'
               ? 'border-emerald-500/40 text-emerald-300 shadow-emerald-950/40'
               : toast.type === 'error'
-              ? 'border-red-500/40 text-red-300 shadow-red-950/40'
-              : 'border-cyan-500/40 text-cyan-300 shadow-cyan-950/40'
+              ? 'border-rose-500/40 text-rose-300 shadow-rose-950/40'
+              : 'border-amber-500/40 text-amber-300 shadow-amber-950/40'
           }`}
         >
           <div className="flex items-center gap-3">
             {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-            {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />}
-            {toast.type === 'info' && <Info className="w-5 h-5 text-cyan-400 shrink-0" />}
-            <span className="text-sm font-medium text-slate-100">{toast.message}</span>
+            {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />}
+            {toast.type === 'info' && <Info className="w-5 h-5 text-amber-400 shrink-0" />}
+            <span className="text-xs font-medium text-slate-100">{toast.message}</span>
           </div>
           <button
             onClick={() => removeToast(toast.id)}

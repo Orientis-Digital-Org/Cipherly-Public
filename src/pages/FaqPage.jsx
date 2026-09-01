@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SecurityBadge from '../components/SecurityBadge';
-import { Search, ChevronDown, HelpCircle, ShieldAlert, Key } from 'lucide-react';
+import { Search, ChevronDown, HelpCircle, ShieldAlert, Key, Smartphone, Monitor } from 'lucide-react';
 
 export default function FaqPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,35 +8,35 @@ export default function FaqPage() {
 
   const faqs = [
     {
-      q: 'Does Cipherly store my master passphrase or keys on any server?',
-      a: 'No. Cipherly is built under a 100% zero-trust, local-first paradigm. Your passphrase is processed only in volatile memory (RAM) and never saved to disk or transmitted to any server.',
-      category: 'Privacy'
+      q: 'Does Cipherly store my master passphrase or keys on any cloud server?',
+      a: 'No. Cipherly is built under a strict zero-trust, local-first paradigm. Your passphrase is processed exclusively in volatile memory (RAM) and never transmitted to any external server.',
+      category: 'Privacy',
     },
     {
-      q: 'What happens if I forget my Master Passphrase?',
-      a: 'Because Cipherly does not maintain backdoors or escrow keys, lost master passphrases cannot be recovered by Orientis Digital or anyone else. We strongly advise backing up your passphrase in a secure physical location or password manager.',
-      category: 'Vault Recovery'
+      q: 'Does Cipherly work on Android mobile devices?',
+      a: 'Yes! Cipherly provides native Android Universal APKs supporting ARM64, ARMv7a, and x86_64 architectures. The Android version includes hardware-accelerated WebCrypto, biometric vault unlock, camera QR scanning, and notch safe-zone padding.',
+      category: 'Mobile',
     },
     {
-      q: 'What encryption algorithms does Cipherly use?',
-      a: 'Cipherly supports AES-256-GCM (Hardware accelerated via AES-NI) and XChaCha20-Poly1305. Both provide Authenticated Encryption with Associated Data (AEAD) to prevent ciphertext tampering.',
-      category: 'Cryptography'
+      q: 'What is Shamir’s Secret Sharing and how does it protect my recovery keys?',
+      a: 'Shamir’s Secret Sharing splits critical master keys or passphrases into N independent threshold shares using Galois Field GF(256) polynomials. For example, in a 3-of-5 threshold, any 3 shares can reconstruct the key, while 2 shares provide zero mathematical clues.',
+      category: 'Threshold Cryptography',
     },
     {
-      q: 'Is Cipherly open-source and auditable?',
-      a: 'Yes! The codebase is 100% open-source under the MIT license on GitHub. Anyone can inspect, build, and verify the cryptographic integrity of the application.',
-      category: 'General'
+      q: 'How does the Decoy Duress Vault work under physical coercion?',
+      a: 'In Settings, you can configure a separate Decoy Passphrase. If forced to unlock your device under duress, entering the decoy passphrase unlocks an isolated decoy vault containing fake files, leaving your real master vault completely invisible.',
+      category: 'Duress Defense',
     },
     {
-      q: 'How does the Gutmann File Shredder work?',
-      a: 'When you shred a file using Cipherly, the application overwrites the fileâ€™s raw sectors with 3-pass DoD or 35-pass Gutmann pseudo-random bit patterns before unlinking it from the filesystem.',
-      category: 'Security'
+      q: 'What media formats are supported for Steganography?',
+      a: 'Cipherly supports both 16-bit uncompressed PCM WAV audio waveforms and PNG/WebP spatial images using Least Significant Bit (LSB) carrier encoding with AES-256-GCM payloads.',
+      category: 'Steganography',
     },
     {
-      q: 'Can I use Cipherly on Linux and Windows?',
-      a: 'Yes! We provide standalone AppImage, Debian DEB, and tarball packages for Linux, as well as standalone portable ZIP binaries for 64-bit Windows.',
-      category: 'General'
-    }
+      q: 'How does the DoD 5220.22-M File Shredder prevent data recovery?',
+      a: 'Unlike normal OS deletion which merely removes directory pointers, Cipherly overwrites the physical file sectors with random bytes and binary complements across multiple passes before truncating and unlinking.',
+      category: 'Destruction',
+    },
   ];
 
   const filteredFaqs = faqs.filter(
@@ -46,14 +46,16 @@ export default function FaqPage() {
   );
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       
       {/* Header */}
       <div className="text-center space-y-4 max-w-2xl mx-auto">
-        <SecurityBadge text="Frequently Asked Questions" variant="cyan" />
-        <h1 className="text-4xl font-extrabold text-white">Have Questions? We Have Answers.</h1>
+        <SecurityBadge text="Frequently Asked Questions" variant="amber" />
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Frequently Asked <span className="text-gradient-amber">Questions</span>
+        </h1>
         <p className="text-slate-300 text-sm">
-          Everything you need to know about Cipherly's zero-trust model, key derivation, and file vault security.
+          Everything you need to know about Cipherly's zero-trust architecture, mobile builds, and cryptographic protection.
         </p>
 
         {/* Search Bar */}
@@ -63,50 +65,52 @@ export default function FaqPage() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search questions or keywords (e.g. Passphrase, AES-256, Shredder)..."
-            className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-cyan-500/50 shadow-xl"
+            placeholder="Search questions (e.g. Android, Shamir, Steganography, Shredder)..."
+            className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-dark-800 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500/50 shadow-xl"
           />
         </div>
       </div>
 
-      {/* Accordion List */}
+      {/* FAQs List */}
       <div className="space-y-4">
-        {filteredFaqs.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 font-mono text-xs">
-            No matching questions found for "{searchTerm}".
-          </div>
-        ) : (
-          filteredFaqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
-            return (
-              <div
-                key={idx}
-                className="rounded-2xl bg-glass border border-slate-800 overflow-hidden transition-all"
+        {filteredFaqs.map((faq, idx) => {
+          const isOpen = openIndex === idx;
+          return (
+            <div
+              key={idx}
+              className={`rounded-2xl border transition-all overflow-hidden ${
+                isOpen
+                  ? 'bg-dark-800/90 border-amber-500/40 shadow-lg shadow-amber-500/5'
+                  : 'bg-dark-800/50 border-slate-800 hover:border-slate-700'
+              }`}
+            >
+              <button
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                className="w-full text-left p-6 flex items-center justify-between gap-4"
               >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-slate-100 text-base hover:text-cyan-300 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-cyan-400 shrink-0" />
-                    <span>{faq.q}</span>
-                  </div>
-                  <ChevronDown className={`w-5 h-5 text-slate-400 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-cyan-400' : ''}`} />
-                </button>
+                <div className="flex items-center gap-3">
+                  <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-[10px] font-bold uppercase">
+                    {faq.category}
+                  </span>
+                  <span className="text-sm sm:text-base font-bold text-white tracking-tight">
+                    {faq.q}
+                  </span>
+                </div>
+                <ChevronDown
+                  className={`w-5 h-5 text-slate-400 transition-transform ${
+                    isOpen ? 'rotate-180 text-amber-400' : ''
+                  }`}
+                />
+              </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-2 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 bg-slate-950/40">
-                    <p>{faq.a}</p>
-                    <div className="mt-4 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-mono text-slate-500">
-                      <span>Category: {faq.category}</span>
-                      <span>Verified Zero-Trust</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })
-        )}
+              {isOpen && (
+                <div className="px-6 pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/80 pt-4">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
     </div>

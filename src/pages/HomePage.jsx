@@ -2,58 +2,60 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SecurityBadge from '../components/SecurityBadge';
 import PasswordEntropyCalculator from '../components/PasswordEntropyCalculator';
+import EncryptionSimulator from '../components/EncryptionSimulator';
 import { 
-  Shield, Lock, Cpu, EyeOff, Zap, FileSpreadsheet, Download, CheckCircle2, 
-  ArrowRight, Key, Layers, RefreshCw, AlertTriangle, ChevronRight, Terminal, Sparkles
+  Shield, Lock, Cpu, EyeOff, Zap, Download, CheckCircle2, 
+  ArrowRight, Key, Layers, RefreshCw, AlertTriangle, ChevronRight, Terminal, Sparkles,
+  Puzzle, FileText, Music, Hash, Smartphone, Monitor
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function HomePage() {
-  const { addToast } = useApp();
+  const { latestVersion, latestBuild } = useApp();
 
   const features = [
     {
       icon: Shield,
-      title: 'Zero-Trust Local Encryption',
-      desc: 'All cryptographic ops execute strictly client-side. Your raw keys and unencrypted payloads never leave device memory.',
-      color: 'text-cyan-400',
-      border: 'border-cyan-500/20'
+      title: 'AES-256-GCM Hardware Vault',
+      desc: 'NIST-standard authenticated encryption with zero-knowledge PBKDF2 (100k rounds) master key derivation.',
+      color: 'text-amber-400',
+      badge: 'Core Vault',
     },
     {
       icon: Key,
-      title: 'Argon2id Key Hardening',
-      desc: 'Protects against GPU & ASIC brute-force clusters using memory-hard Argon2id key derivation (64MB memory cost).',
-      color: 'text-emerald-400',
-      border: 'border-emerald-500/20'
+      title: 'RSA-OAEP 4096-bit E2EE Messenger',
+      desc: 'Asymmetric contact key exchange and detached cryptographic digital message signatures without central servers.',
+      color: 'text-amber-300',
+      badge: 'Asymmetric',
     },
     {
-      icon: Zap,
-      title: 'Gutmann File Shredder',
-      desc: 'Permanently destroy sensitive files with DoD 5220.22-M 3-pass or Gutmann 35-pass entropy overwrite before unlinking.',
-      color: 'text-yellow-400',
-      border: 'border-yellow-500/20'
+      icon: Puzzle,
+      title: "Shamir's Secret Sharing (M-of-N)",
+      desc: 'Split critical master keys and recovery seeds into distributed threshold shares using finite Galois Field GF(256) polynomials.',
+      color: 'text-emerald-400',
+      badge: 'Threshold Quorum',
     },
     {
       icon: EyeOff,
-      title: 'Steganographic Carrier Engine',
-      desc: 'Hide encrypted ciphertexts inside innocent carrier images (PNG/WebP) using unnoticeable LSB spatial encoding.',
-      color: 'text-purple-400',
-      border: 'border-purple-500/20'
+      title: 'WAV & Image Steganography',
+      desc: 'Conceal encrypted secret payloads inside innocent PNG/WebP images and 16-bit uncompressed PCM WAV audio waveforms.',
+      color: 'text-amber-400',
+      badge: 'Steganography',
     },
     {
-      icon: Layers,
-      title: 'Dual Cipher Engine',
-      desc: 'Seamlessly switch between NIST-standard AES-256-GCM (Hardware accelerated) and modern XChaCha20-Poly1305.',
-      color: 'text-blue-400',
-      border: 'border-blue-500/20'
+      icon: Zap,
+      title: 'DoD 5220.22-M File Sanitizer',
+      desc: 'Permanently destroy sensitive files with multi-pass random byte overwrite and cryptographically wipe local file streams.',
+      color: 'text-rose-400',
+      badge: 'Destruction',
     },
     {
       icon: Terminal,
-      title: 'Zero Telemetry Guarantee',
-      desc: 'No cloud dependencies, no analytics, no external tracking servers. 100% open-source and audit-friendly architecture.',
-      color: 'text-rose-400',
-      border: 'border-rose-500/20'
-    }
+      title: 'Crypto Power Tools & Diceware',
+      desc: 'EFF Diceware high-entropy passphrase generator, live multi-digest hash calculator (SHA-256/512/384/1), and 30s auto-clear clipboard guard.',
+      color: 'text-yellow-400',
+      badge: 'Power Utilities',
+    },
   ];
 
   return (
@@ -63,81 +65,99 @@ export default function HomePage() {
       <section className="relative pt-12 md:pt-20 overflow-hidden">
         {/* Background Radial Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-glow pointer-events-none" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
           
           <div className="inline-block">
-            <SecurityBadge text="Zero-Trust Architecture â€¢ Military-Grade Cryptography" variant="cyan" />
+            <SecurityBadge text="Zero-Trust Architecture • Pure Offline Cryptography" variant="amber" />
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto">
-            Your Keys. Your Files. <br />
-            <span className="text-gradient-cyan">Zero Compromise.</span>
+            Zero-Trust Encryption. <br />
+            <span className="text-gradient-amber">100% Offline Vault.</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Cipherly is an open-source, local-first zero-trust encryption suite designed to secure sensitive files, derive resilient cryptographic keys, and shred data beyond recovery.
+            Cipherly is an open-source, local-first zero-trust encryption suite. Protect sensitive files, derive resilient cryptographic keys, split secret shares, and shred data with zero telemetry.
           </p>
 
-          {/* CTA Buttons */}
+          {/* Hero CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
               to="/downloads"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-base flex items-center justify-center gap-3 shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 font-bold text-base flex items-center justify-center gap-3 shadow-xl shadow-amber-500/25 transition-all transform hover:-translate-y-0.5"
             >
               <Download className="w-5 h-5" />
-              <span>Download Desktop Vault</span>
+              <span>Download Cipherly v{latestVersion}</span>
+            </Link>
+
+            <Link
+              to="/docs"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-dark-800 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-base flex items-center justify-center gap-2 transition-all"
+            >
+              <FileText className="w-5 h-5" />
+              <span>Explore Documentation</span>
             </Link>
           </div>
 
           {/* Trust Highlights */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-10 text-xs font-mono text-slate-400 border-t border-slate-800/80">
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-              <span>100% Local Processing</span>
+          <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+            <div className="p-4 rounded-2xl bg-dark-800/80 border border-slate-800/80 space-y-1">
+              <span className="text-xs font-mono text-amber-400 font-bold">01. ZERO TELEMETRY</span>
+              <p className="text-xs text-slate-400">Zero tracking or analytics. Runs fully offline.</p>
             </div>
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>No Cloud Accounts</span>
+            <div className="p-4 rounded-2xl bg-dark-800/80 border border-slate-800/80 space-y-1">
+              <span className="text-xs font-mono text-amber-400 font-bold">02. NATIVE TAURI v2</span>
+              <p className="text-xs text-slate-400">High-performance Rust engine with WebCrypto.</p>
             </div>
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-              <span>Open Source Architecture</span>
+            <div className="p-4 rounded-2xl bg-dark-800/80 border border-slate-800/80 space-y-1">
+              <span className="text-xs font-mono text-amber-400 font-bold">03. MULTI-PLATFORM</span>
+              <p className="text-xs text-slate-400">Native Windows, Android, and Linux support.</p>
             </div>
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>Cross-Platform Linux & Windows</span>
+            <div className="p-4 rounded-2xl bg-dark-800/80 border border-slate-800/80 space-y-1">
+              <span className="text-xs font-mono text-amber-400 font-bold">04. OPEN SOURCE</span>
+              <p className="text-xs text-slate-400">MIT licensed and fully auditable on GitHub.</p>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* CORE FEATURES GRID */}
+      {/* CORE CAPABILITIES GRID */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-3">
-          <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">Engine Architecture</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">Engineered for Absolute Confidentiality</h2>
-          <p className="text-sm text-slate-400 max-w-xl mx-auto">
-            Built from the ground up using state-of-the-art cryptographic primitives and zero-knowledge paradigms.
+        <div className="text-center space-y-4 max-w-2xl mx-auto">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
+            Comprehensive Cryptographic Toolkit
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Engineered for Extreme Confidentiality
+          </h2>
+          <p className="text-slate-400 text-sm sm:text-base">
+            Every feature is executed locally in client memory with no intermediate server caching.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, idx) => {
-            const IconComponent = f.icon;
+          {features.map((f, i) => {
+            const Icon = f.icon;
             return (
               <div
-                key={idx}
-                className={`p-6 rounded-2xl bg-slate-900/60 border ${f.border} bg-glass-hover transition-all space-y-4 group`}
+                key={i}
+                className="rounded-2xl p-6 bg-dark-800/80 border border-slate-800 hover:border-amber-500/40 transition-all space-y-4 relative group hover:shadow-xl hover:shadow-amber-500/5"
               >
-                <div className={`w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform ${f.color}`}>
-                  <IconComponent className="w-6 h-6" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-slate-300">
+                    {f.badge}
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+
+                <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
                   {f.title}
                 </h3>
+
                 <p className="text-xs text-slate-400 leading-relaxed">
                   {f.desc}
                 </p>
@@ -147,89 +167,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PASSWORD ENTROPY & SECURITY TOOL */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-center space-y-3">
-          <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">Cryptographic Resilience</span>
-          <h2 className="text-3xl font-bold text-white">Interactive Passphrase Strength Estimator</h2>
-        </div>
-
-        <PasswordEntropyCalculator />
-      </section>
-
-      {/* COMPARISON TABLE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center space-y-3">
-          <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">Why Cipherly?</span>
-          <h2 className="text-3xl font-bold text-white">Cipherly vs Traditional Encryption</h2>
-        </div>
-
-        <div className="overflow-x-auto rounded-2xl bg-glass border border-slate-800 shadow-xl">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-slate-950 border-b border-slate-800 text-slate-400">
-              <tr>
-                <th className="p-4">Feature / Paradigm</th>
-                <th className="p-4 text-cyan-400 font-bold">Cipherly Vault</th>
-                <th className="p-4 text-slate-400">Cloud Storage Vaults</th>
-                <th className="p-4 text-slate-400">Standard Zip Passwords</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800 text-slate-300">
-              <tr>
-                <td className="p-4 font-semibold text-white">Encryption Standard</td>
-                <td className="p-4 text-cyan-400 font-bold">AES-256-GCM / XChaCha20</td>
-                <td className="p-4 text-slate-400">AES-256 (Server Managed)</td>
-                <td className="p-4 text-slate-400">ZipCrypto (Legacy Vulnerable)</td>
-              </tr>
-              <tr>
-                <td className="p-4 font-semibold text-white">Key Derivation Function</td>
-                <td className="p-4 text-emerald-400 font-bold">Argon2id (Memory Hard)</td>
-                <td className="p-4 text-slate-400">PBKDF2 / Vendor KMS</td>
-                <td className="p-4 text-slate-400">None (Plain Hash)</td>
-              </tr>
-              <tr>
-                <td className="p-4 font-semibold text-white">Data Storage Location</td>
-                <td className="p-4 text-cyan-400 font-bold">100% Local Machine Only</td>
-                <td className="p-4 text-slate-400">Third-Party Cloud Servers</td>
-                <td className="p-4 text-slate-400">Local</td>
-              </tr>
-              <tr>
-                <td className="p-4 font-semibold text-white">Telemetry & Analytics</td>
-                <td className="p-4 text-emerald-400 font-bold">Zero Telemetry (Disabled)</td>
-                <td className="p-4 text-slate-400">Extensive User Metrics</td>
-                <td className="p-4 text-slate-400">N/A</td>
-              </tr>
-              <tr>
-                <td className="p-4 font-semibold text-white">File Shredding Standard</td>
-                <td className="p-4 text-cyan-400 font-bold">35-Pass Gutmann / DoD</td>
-                <td className="p-4 text-slate-400">Soft Delete / Bin</td>
-                <td className="p-4 text-slate-400">Standard OS Unlink</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* CTA BANNER */}
+      {/* INTERACTIVE SIMULATOR SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-cyan-950/80 via-slate-900 to-emerald-950/80 border border-cyan-500/30 p-8 md:p-14 overflow-hidden text-center space-y-6 shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white">
-            Take Control of Your Cryptographic Privacy Today.
+        <div className="rounded-3xl bg-dark-800/90 border border-slate-800 p-6 sm:p-10 space-y-8">
+          <div className="text-center space-y-3 max-w-xl mx-auto">
+            <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+              Interactive Testbed
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Client-Side Web Crypto Simulator
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Test live AES-GCM authenticated encryption and entropy calculations right in your browser.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <EncryptionSimulator />
+            <PasswordEntropyCalculator />
+          </div>
+        </div>
+      </section>
+
+      {/* BOTTOM CTA SECTION */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="rounded-3xl bg-gradient-to-b from-amber-500/10 via-dark-800/80 to-dark-900 border border-amber-500/30 p-8 sm:p-14 space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 mx-auto shadow-lg shadow-amber-500/20">
+            <img src="/icon.png" alt="Cipherly" className="w-10 h-10 object-contain" />
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Take Control of Your Cryptographic Sovereignty
           </h2>
-          <p className="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base">
-            No registration, no credit cards, no telemetry. Download the standalone executable for Linux or Windows and lock down your sensitive data.
+
+          <p className="text-slate-400 text-sm max-w-xl mx-auto">
+            Available on Windows (Setup, Portable, MSI), Android Universal APK, and Linux standalone binaries.
           </p>
 
-          <div className="pt-2">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/downloads"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/30 transition-all transform hover:scale-105"
+              className="px-8 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-xl shadow-amber-500/25 transition-all"
             >
-              <Download className="w-5 h-5" />
-              <span>Get Cipherly v1.0.0 Now</span>
+              Download Cipherly Free
             </Link>
+            <a
+              href="https://github.com/orientis-digital/Cipherly-Electron"
+              target="_blank"
+              rel="noreferrer"
+              className="px-8 py-3.5 rounded-xl bg-dark-800 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm transition-all"
+            >
+              Star on GitHub
+            </a>
           </div>
         </div>
       </section>

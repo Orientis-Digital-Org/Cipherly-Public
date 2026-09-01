@@ -17,7 +17,7 @@ import Error404Page from './pages/Error404Page';
 export default function App() {
   return (
     <AppProvider>
-      <div className="min-h-screen flex flex-col bg-[#070a11] text-slate-100 bg-grid-pattern relative">
+      <div className="min-h-screen flex flex-col bg-[#090b10] text-slate-100 bg-grid-pattern relative selection:bg-amber-500/30 selection:text-amber-200">
         <Navbar />
         <main className="flex-1">
           <Routes>
