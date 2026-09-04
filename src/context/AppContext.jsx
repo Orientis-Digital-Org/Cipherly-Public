@@ -15,10 +15,12 @@ const getDownloadApiBase = () => {
 const DOWNLOAD_API_BASE = getDownloadApiBase();
 
 const FALLBACK_ENDPOINTS = [
+  `${DOWNLOAD_API_BASE}/api/v1/apps/cipherly/releases`,
+  `${DOWNLOAD_API_BASE}/api/v1/apps/cipherly/releases/latest`,
+  `https://downloads.orientisdigital.com/api/v1/apps/cipherly/releases`,
+  `https://downloads.orientisdigital.com/api/v1/apps/cipherly/releases/latest`,
   `${DOWNLOAD_API_BASE}/api/v1/cipherly/releases`,
-  `https://downloads.orientisdigital.com/api/v1/cipherly/releases`,
   `${DOWNLOAD_API_BASE}/api/v1/cipherly/latest`,
-  `https://downloads.orientisdigital.com/api/v1/cipherly/latest`,
 ];
 
 const DEFAULT_ARTIFACTS = [
