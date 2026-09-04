@@ -18,8 +18,8 @@ export default function FaqPage() {
       category: 'Mobile',
     },
     {
-      q: 'What is Shamir’s Secret Sharing and how does it protect my recovery keys?',
-      a: 'Shamir’s Secret Sharing splits critical master keys or passphrases into N independent threshold shares using Galois Field GF(256) polynomials. For example, in a 3-of-5 threshold, any 3 shares can reconstruct the key, while 2 shares provide zero mathematical clues.',
+      q: "What is Shamir's Secret Sharing and how does it protect my recovery keys?",
+      a: "Shamir's Secret Sharing splits critical master keys or passphrases into N independent threshold shares using Galois Field GF(256) polynomials. For example, in a 3-of-5 threshold, any 3 shares can reconstruct the key, while 2 shares provide zero mathematical clues.",
       category: 'Threshold Cryptography',
     },
     {
@@ -28,9 +28,34 @@ export default function FaqPage() {
       category: 'Duress Defense',
     },
     {
-      q: 'What media formats are supported for Steganography?',
-      a: 'Cipherly supports both 16-bit uncompressed PCM WAV audio waveforms and PNG/WebP spatial images using Least Significant Bit (LSB) carrier encoding with AES-256-GCM payloads.',
+      q: "Does Cipherly's 2FA Authenticator require network access or sync with any cloud?",
+      a: 'No. The 2FA Authenticator operates completely air-gapped and offline according to RFC 6238 and RFC 4226 standards. All account secrets and seed keys are stored encrypted with AES-256-GCM in your local master vault, safe from remote SIM-swap and credential breach attacks.',
+      category: '2FA Authenticator',
+    },
+    {
+      q: 'How do Self-Decrypting HTML Capsules work without recipients installing Cipherly?',
+      a: 'A Self-Decrypting Capsule is a standalone .html file that bundles your encrypted payload alongside a zero-dependency WebCrypto AES-GCM engine in inline vanilla JavaScript. Recipients simply open the file in any modern browser (Chrome, Firefox, Safari, Edge, Android/iOS) and enter the passphrase. The file decrypts in ephemeral memory without ever connecting to any server.',
+      category: 'Capsules',
+    },
+    {
+      q: 'What is Zero-Width Unicode Steganography and where does it work?',
+      a: 'Zero-Width Steganography encodes encrypted or secret binary data into invisible Unicode characters (ZWSP \u200B, ZWNJ \u200C, ZWJ \u200D) woven between regular words. It is completely invisible to human eyes and survives standard copy-pasting, tweets, messaging apps, and email bodies.',
       category: 'Steganography',
+    },
+    {
+      q: 'What media formats are supported for Steganography?',
+      a: 'Cipherly supports 16-bit uncompressed PCM WAV audio waveforms, PNG/WebP spatial pixel images, and Unicode Zero-Width text encodingâ€”all protected with authenticated AES-256-GCM payloads.',
+      category: 'Steganography',
+    },
+    {
+      q: 'Is it safe to check passwords against the k-Anonymity breach auditor?',
+      a: 'Yes. Cipherly utilizes the mathematical k-Anonymity model: your password is SHA-1 hashed entirely on your device, and ONLY the first 5 hexadecimal characters of the hash are queried against the breach registry. The server responds with hundreds of candidate suffixes, and your browser completes the matching locally. Your password and remaining 35 hash characters NEVER leave your machine.',
+      category: 'Audit & Integrity',
+    },
+    {
+      q: 'What is HMAC and why should I use it over a standard SHA hash?',
+      a: 'A standard SHA hash only verifies integrity (detecting accidental corruption). An HMAC (Keyed-Hash Message Authentication Code) incorporates a secret shared key, which cryptographically proves both that the data has not been altered AND that it originated from a sender holding the secret key.',
+      category: 'Audit & Integrity',
     },
     {
       q: 'How does the DoD 5220.22-M File Shredder prevent data recovery?',
@@ -42,7 +67,8 @@ export default function FaqPage() {
   const filteredFaqs = faqs.filter(
     (f) =>
       f.q.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      f.a.toLowerCase().includes(searchTerm.toLowerCase())
+      f.a.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      f.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -55,7 +81,7 @@ export default function FaqPage() {
           Frequently Asked <span className="text-gradient-amber">Questions</span>
         </h1>
         <p className="text-slate-300 text-sm">
-          Everything you need to know about Cipherly's zero-trust architecture, mobile builds, and cryptographic protection.
+          Everything you need to know about Cipherly's zero-trust architecture, mobile builds, 2FA, capsules, and cryptographic tools.
         </p>
 
         {/* Search Bar */}
@@ -65,7 +91,7 @@ export default function FaqPage() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search questions (e.g. Android, Shamir, Steganography, Shredder)..."
+            placeholder="Search questions (e.g. 2FA, Capsules, k-Anonymity, Steganography, Android)..."
             className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-dark-800 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500/50 shadow-xl"
           />
         </div>

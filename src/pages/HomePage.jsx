@@ -1,17 +1,18 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { Link } from 'react-router-dom';
 import SecurityBadge from '../components/SecurityBadge';
 import PasswordEntropyCalculator from '../components/PasswordEntropyCalculator';
 import EncryptionSimulator from '../components/EncryptionSimulator';
+import WebToolsSuite from '../components/WebToolsSuite';
 import { 
   Shield, Lock, Cpu, EyeOff, Zap, Download, CheckCircle2, 
   ArrowRight, Key, Layers, RefreshCw, AlertTriangle, ChevronRight, Terminal, Sparkles,
-  Puzzle, FileText, Music, Hash, Smartphone, Monitor
+  Puzzle, FileText, Music, Hash, Smartphone, Monitor, Clock, FileCode2, SearchCheck
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function HomePage() {
-  const { latestVersion, latestBuild } = useApp();
+  const { latestVersion } = useApp();
 
   const features = [
     {
@@ -22,11 +23,25 @@ export default function HomePage() {
       badge: 'Core Vault',
     },
     {
-      icon: Key,
-      title: 'RSA-OAEP 4096-bit E2EE Messenger',
-      desc: 'Asymmetric contact key exchange and detached cryptographic digital message signatures without central servers.',
-      color: 'text-amber-300',
-      badge: 'Asymmetric',
+      icon: Clock,
+      title: 'Offline 2FA Authenticator (RFC 6238)',
+      desc: 'Local-first time-based one-time password (TOTP) generator with live circular countdown progress dials and encrypted seed storage.',
+      color: 'text-amber-400',
+      badge: 'Access & MFA',
+    },
+    {
+      icon: FileCode2,
+      title: 'Standalone HTML Burner Capsules',
+      desc: 'Export encrypted files or notes into zero-dependency standalone .html files that decrypt in any browser offline without software installed.',
+      color: 'text-amber-400',
+      badge: 'Capsules',
+    },
+    {
+      icon: EyeOff,
+      title: 'Tri-Carrier Steganography',
+      desc: 'Conceal encrypted secrets inside innocent PNG images, 16-bit PCM WAV audio waveforms, or invisible Unicode zero-width text.',
+      color: 'text-amber-400',
+      badge: 'Concealment',
     },
     {
       icon: Puzzle,
@@ -36,11 +51,11 @@ export default function HomePage() {
       badge: 'Threshold Quorum',
     },
     {
-      icon: EyeOff,
-      title: 'WAV & Image Steganography',
-      desc: 'Conceal encrypted secret payloads inside innocent PNG/WebP images and 16-bit uncompressed PCM WAV audio waveforms.',
-      color: 'text-amber-400',
-      badge: 'Steganography',
+      icon: Key,
+      title: 'RSA-OAEP 4096-bit E2EE Messenger',
+      desc: 'Asymmetric contact key exchange and detached cryptographic digital message signatures without central servers.',
+      color: 'text-amber-300',
+      badge: 'Asymmetric',
     },
     {
       icon: Zap,
@@ -50,27 +65,24 @@ export default function HomePage() {
       badge: 'Destruction',
     },
     {
-      icon: Terminal,
-      title: 'Crypto Power Tools & Diceware',
-      desc: 'EFF Diceware high-entropy passphrase generator, live multi-digest hash calculator (SHA-256/512/384/1), and 30s auto-clear clipboard guard.',
+      icon: SearchCheck,
+      title: 'HMAC & k-Anonymity Leak Auditor',
+      desc: 'Verify webhook digests with HMAC-SHA256/384/512 and audit passphrases against known breaches with zero credential leakage.',
       color: 'text-yellow-400',
-      badge: 'Power Utilities',
+      badge: 'Integrity',
     },
   ];
 
   return (
     <div className="space-y-24 pb-20">
-      
       {/* HERO SECTION */}
       <section className="relative pt-12 md:pt-20 overflow-hidden">
-        {/* Background Radial Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-glow pointer-events-none" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
-          
           <div className="inline-block">
-            <SecurityBadge text="Zero-Trust Architecture • Pure Offline Cryptography" variant="amber" />
+            <SecurityBadge text="Zero-Trust Architecture   Pure Offline Cryptography" variant="amber" />
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto">
@@ -79,10 +91,9 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Cipherly is an open-source, local-first zero-trust encryption suite. Protect sensitive files, derive resilient cryptographic keys, split secret shares, and shred data with zero telemetry.
+            Cipherly is an open-source, local-first zero-trust encryption suite. Protect sensitive files, derive resilient cryptographic keys, split secret shares, generate 2FA codes, and shred data with zero telemetry.
           </p>
 
-          {/* Hero CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
               to="/downloads"
@@ -101,7 +112,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Trust Highlights */}
           <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
             <div className="p-4 rounded-2xl bg-dark-800/80 border border-slate-800/80 space-y-1">
               <span className="text-xs font-mono text-amber-400 font-bold">01. ZERO TELEMETRY</span>
@@ -137,7 +147,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => {
             const Icon = f.icon;
             return (
@@ -154,7 +164,7 @@ export default function HomePage() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors">
                   {f.title}
                 </h3>
 
@@ -168,24 +178,24 @@ export default function HomePage() {
       </section>
 
       {/* INTERACTIVE SIMULATOR SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-dark-800/90 border border-slate-800 p-6 sm:p-10 space-y-8">
-          <div className="text-center space-y-3 max-w-xl mx-auto">
-            <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
-              Interactive Testbed
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              Client-Side Web Crypto Simulator
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Test live AES-GCM authenticated encryption and entropy calculations right in your browser.
-            </p>
-          </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center space-y-3 max-w-xl mx-auto">
+          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+            Interactive Testbed
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+            Live Browser Cryptographic Suite
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400">
+            Try Cipherly's 2FA generator, HTML capsules, zero-width stego, and AES-GCM encryption directly in your browser.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <EncryptionSimulator />
-            <PasswordEntropyCalculator />
-          </div>
+        <WebToolsSuite />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <EncryptionSimulator />
+          <PasswordEntropyCalculator />
         </div>
       </section>
 
@@ -222,7 +232,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
