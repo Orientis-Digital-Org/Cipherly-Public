@@ -1,0 +1,6 @@
+# RFC 9116 - Cipherly Security Disclosure
+Contact: mailto:orientisdigital.official@gmail.com
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://cipherly.orientisdigital.com/.well-known/security.txt
+Policy: https://cipherly.orientisdigital.com/about

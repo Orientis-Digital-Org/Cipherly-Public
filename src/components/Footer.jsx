@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Github, Mail, Globe, Lock, ShieldCheck, Heart } from 'lucide-react';
+import { Github, Mail, Globe } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -17,11 +17,11 @@ export default function Footer() {
               <span className="text-lg font-bold text-white tracking-tight">Cipherly</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Zero-Trust Encryption Suite & Cryptographic Vault. Built for high-security operations, offline vaults, and paranoid data confidentiality.
+              Zero-Trust Encryption Suite &amp; Cryptographic Vault. Built for high-security operations, offline vaults, and paranoid data confidentiality.
             </p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Zero-Telemetry & 100% Offline</span>
+              <span>Zero-Telemetry &amp; 100% Offline</span>
             </div>
           </div>
 
@@ -29,12 +29,12 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-mono uppercase tracking-wider font-semibold text-slate-200 mb-4">Cryptographic Specs</h4>
             <ul className="space-y-2 text-xs font-mono text-slate-400">
-              <li className="hover:text-amber-400 transition-colors">• AES-256-GCM Hardware Auth</li>
-              <li className="hover:text-amber-400 transition-colors">• RSA-OAEP 4096-bit & Signatures</li>
-              <li className="hover:text-amber-400 transition-colors">• PBKDF2 (100,000 Key Rounds)</li>
-              <li className="hover:text-amber-400 transition-colors">• Shamir's Secret Sharing GF(256)</li>
-              <li className="hover:text-amber-400 transition-colors">• WAV & Image Pixel Steganography</li>
-              <li className="hover:text-amber-400 transition-colors">• DoD 5220.22-M Multi-Pass Shred</li>
+              <li className="hover:text-amber-400 transition-colors">AES-256-GCM Hardware Auth</li>
+              <li className="hover:text-amber-400 transition-colors">RSA-OAEP 4096-bit &amp; Signatures</li>
+              <li className="hover:text-amber-400 transition-colors">PBKDF2 (100,000 Key Rounds)</li>
+              <li className="hover:text-amber-400 transition-colors">Shamir&apos;s Secret Sharing GF(256)</li>
+              <li className="hover:text-amber-400 transition-colors">WAV &amp; Image Pixel Steganography</li>
+              <li className="hover:text-amber-400 transition-colors">DoD 5220.22-M Multi-Pass Shred</li>
             </ul>
           </div>
 
@@ -42,11 +42,13 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-mono uppercase tracking-wider font-semibold text-slate-200 mb-4">Navigation</h4>
             <ul className="space-y-2.5 text-xs text-slate-400">
-              <li><Link to="/downloads" className="hover:text-amber-400 transition-colors">Downloads & APKs</Link></li>
-              <li><Link to="/docs" className="hover:text-amber-400 transition-colors">Documentation & Whitepaper</Link></li>
+              <li><Link to="/downloads" className="hover:text-amber-400 transition-colors">Downloads &amp; APKs</Link></li>
+              <li><Link to="/docs" className="hover:text-amber-400 transition-colors">Documentation &amp; Whitepaper</Link></li>
               <li><Link to="/faq" className="hover:text-amber-400 transition-colors">Frequently Asked Questions</Link></li>
-              <li><Link to="/announcements" className="hover:text-amber-400 transition-colors">Release Notes & Updates</Link></li>
+              <li><Link to="/announcements" className="hover:text-amber-400 transition-colors">Release Notes &amp; Updates</Link></li>
               <li><Link to="/about" className="hover:text-amber-400 transition-colors">About Orientis Digital</Link></li>
+              <li><Link to="/privacy" className="hover:text-amber-400 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-amber-400 transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
@@ -67,6 +69,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 transition-all"
                 title="GitHub Repository"
+                aria-label="GitHub Repository"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -74,6 +77,7 @@ export default function Footer() {
                 href="mailto:orientisdigital.official@gmail.com"
                 className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 transition-all"
                 title="Security Inquiries"
+                aria-label="Security Inquiries"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -83,6 +87,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-400 hover:border-amber-500/40 transition-all"
                 title="Orientis Digital Official Site"
+                aria-label="Orientis Digital Official Site"
               >
                 <Globe className="w-4 h-4" />
               </a>
@@ -93,8 +98,11 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800/60 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} Orientis Digital. All Rights Reserved. MIT Open Source License.</p>
+          <p>&copy; {new Date().getFullYear()} Orientis Digital. All Rights Reserved. MIT Open Source License.</p>
           <div className="flex items-center gap-6">
+            <Link to="/privacy" className="text-slate-400 hover:text-amber-400 transition-colors">Privacy</Link>
+            <Link to="/terms" className="text-slate-400 hover:text-amber-400 transition-colors">Terms</Link>
+            <span className="text-slate-600">|</span>
             <span className="text-slate-400">Zero-Knowledge Guaranteed</span>
             <span className="text-slate-400">Tauri v2 Native Rust Backend</span>
           </div>

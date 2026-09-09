@@ -12,7 +12,10 @@ import DocsPage from './pages/DocsPage';
 import FaqPage from './pages/FaqPage';
 import AboutPage from './pages/AboutPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 import Error404Page from './pages/Error404Page';
+import CookieBanner from './components/CookieBanner';
 
 export default function App() {
   return (
@@ -27,10 +30,13 @@ export default function App() {
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/announcements" element={<AnnouncementsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
             <Route path="*" element={<Error404Page />} />
           </Routes>
         </main>
         <Footer />
+        <CookieBanner />
         <NotificationToast />
       </div>
     </AppProvider>
