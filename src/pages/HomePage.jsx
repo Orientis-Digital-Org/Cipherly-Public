@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SecurityBadge from '../components/SecurityBadge';
 import PasswordEntropyCalculator from '../components/PasswordEntropyCalculator';
@@ -82,7 +82,7 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
           <div className="inline-block">
-            <SecurityBadge text="Zero-Trust Architecture   Pure Offline Cryptography" variant="amber" />
+            <SecurityBadge text="Zero-Trust Architecture • Pure Offline Cryptography" variant="amber" />
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto">

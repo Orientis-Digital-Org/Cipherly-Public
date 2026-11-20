@@ -208,7 +208,7 @@ export default function DownloadsPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
                     <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider">
-                      {art.format} • {art.arch}
+                      {art.format} â€¢ {art.arch}
                     </span>
                     <h3 className="text-base font-bold text-white tracking-tight">{art.name}</h3>
                   </div>

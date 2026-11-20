@@ -19,7 +19,7 @@ export default function AnnouncementsPage() {
       date: 'August 2026',
       title: 'Zero-Trust Suite Architecture & Shamir Quorum Release',
       badge: 'Core Feature',
-      content: 'Introduced Shamir’s Secret Sharing over Galois Field GF(256), RSA-OAEP 4096-bit contact identity exchange, WAV audio carrier steganography, and DoD 5220.22-M multi-pass file shredder.',
+      content: "Introduced Shamir's Secret Sharing over Galois Field GF(256), RSA-OAEP 4096-bit contact identity exchange, WAV audio carrier steganography, and DoD 5220.22-M multi-pass file shredder.",
     },
   ];
 

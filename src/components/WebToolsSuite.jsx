@@ -210,7 +210,7 @@ export default function WebToolsSuite() {
     const byteLen = bits.length / 8;
     const bytes = new Uint8Array(byteLen);
     for (let i = 0; i < byteLen; i++) {
-      bytes[i] = parseInt(bits.substr(i * 8, 8), 2);
+      bytes[i] = parseInt(bits.slice(i * 8, i * 8 + 8), 2);
     }
     try {
       const dec = new TextDecoder().decode(bytes);
@@ -517,7 +517,7 @@ export default function WebToolsSuite() {
               Encode Invisibly
             </button>
             <button
-              onClick={() => handleExtractStego(stegoOutput || stegoCarrier)}
+              onClick={() => handleExtractStego(stegoCarrier.includes(ZW_DELIM) ? stegoCarrier : (stegoOutput || stegoCarrier))}
               className="flex-1 py-2 rounded-xl bg-dark-700 hover:bg-dark-600 text-slate-200 text-xs font-bold border border-slate-700 transition"
             >
               Extract Hidden Payload

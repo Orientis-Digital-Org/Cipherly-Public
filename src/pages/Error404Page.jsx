@@ -10,7 +10,7 @@ export default function Error404Page() {
           <ShieldAlert className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <span className="font-mono text-xs font-bold text-rose-400 uppercase tracking-widest">Error 404 • Resource Not Found</span>
+          <span className="font-mono text-xs font-bold text-rose-400 uppercase tracking-widest">Error 404 â€¢ Resource Not Found</span>
           <h1 className="text-3xl font-extrabold text-white">Cryptographic Node Not Found</h1>
           <p className="text-sm text-slate-400">
             The requested location does not exist or has been permanently purged.
