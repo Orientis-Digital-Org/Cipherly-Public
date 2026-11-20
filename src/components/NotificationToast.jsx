@@ -8,7 +8,7 @@ export default function NotificationToast() {
   if (!toasts.length) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
+    <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] right-4 sm:right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none px-2 sm:px-0">
       {toasts.map((toast) => (
         <div
           key={toast.id}

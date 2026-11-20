@@ -23,7 +23,7 @@ export default function CookieBanner() {
   return (
     <aside
       aria-label="Privacy and Zero Telemetry Notice"
-      className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 rounded-2xl bg-[#0e131f] border border-amber-500/30 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-sans text-slate-300 transition-all"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 rounded-2xl bg-[#0e131f] border border-amber-500/30 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] font-sans text-slate-300 transition-all"
     >
       <div className="flex items-start justify-between gap-3 mb-2">
         <div className="flex items-center gap-2 font-mono text-xs uppercase text-amber-400 font-bold tracking-wider">
