@@ -6,90 +6,98 @@ const getDownloadApiBase = () => {
   if (import.meta.env.VITE_DOWNLOAD_API_URL) {
     return import.meta.env.VITE_DOWNLOAD_API_URL.replace(/\/$/, '');
   }
-  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-    return 'https://downloads.nexusec.space';
-  }
-  return 'https://downloads.nexusec.space';
+  return 'https://downloads.orientis.digital';
 };
 
 const DOWNLOAD_API_BASE = getDownloadApiBase();
 
 const FALLBACK_ENDPOINTS = [
-  `${DOWNLOAD_API_BASE}/api/v1/apps/cipherly/releases`,
   `${DOWNLOAD_API_BASE}/api/v1/apps/cipherly/releases/latest`,
-  `https://downloads.orientisdigital.com/api/v1/apps/cipherly/releases`,
-  `https://downloads.orientisdigital.com/api/v1/apps/cipherly/releases/latest`,
-  `${DOWNLOAD_API_BASE}/api/v1/cipherly/releases`,
-  `${DOWNLOAD_API_BASE}/api/v1/cipherly/latest`,
+  `${DOWNLOAD_API_BASE}/api/v1/apps/cipherly/releases`,
+  `https://downloads.orientis.digital/api/v1/apps/cipherly/releases/latest`,
+  `https://downloads.orientis.digital/api/v1/apps/cipherly/releases`,
+  `https://downloads.orientis.digital/api/v1/cipherly/latest`,
+  `https://downloads.orientis.digital/api/v1/cipherly/releases`,
 ];
+
+const sanitizeDownloadUrl = (url, filename) => {
+  if (!url) return `${DOWNLOAD_API_BASE}/cipherly/${filename || ''}`;
+  let clean = url
+    .replace(/https?:\/\/(?:downloads\.)?nexusec\.(?:space|com)/gi, DOWNLOAD_API_BASE)
+    .replace(/https?:\/\/downloads\.orientisdigital\.com/gi, DOWNLOAD_API_BASE);
+  if (!clean.startsWith('http')) {
+    clean = `${DOWNLOAD_API_BASE}${clean.startsWith('/') ? '' : '/'}${clean}`;
+  }
+  return clean;
+};
 
 const DEFAULT_ARTIFACTS = [
   {
     id: 'win-setup-latest',
-    filename: 'Cipherly-Setup.exe',
-    version: '0.0.1',
-    build_number: 4,
-    display_version: 'v0.0.1 (Build 4)',
+    filename: 'Cipherly_0.0.6_Build14_x64-setup.exe',
+    version: '0.0.6',
+    build_number: 14,
+    display_version: 'v0.0.6 (Build 14)',
     platform_key: 'windows',
     os_name: 'Windows',
     name: 'Windows Desktop Installer (.exe)',
     description: 'Complete Windows 64-bit installer with automatic desktop shortcut and seamless background updates.',
     format: 'NSIS EXE',
     arch: 'x64',
-    size: '4.12 MB',
-    sha256: 'A5430BF99273DA9BE4974EDA8391C4D83E649141F5F35A0F5404KB65MB000',
-    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly-Setup.exe`,
+    size: '3.45 MB',
+    sha256: 'c8dd3af04f88de7927d5eeb2cf201ee9624eed30da0b262a7b4a290518da6592',
+    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly_0.0.6_Build14_x64-setup.exe`,
     recommended: true,
   },
   {
     id: 'win-portable-latest',
-    filename: 'Cipherly-Portable.exe',
-    version: '0.0.1',
-    build_number: 4,
-    display_version: 'v0.0.1 (Build 4)',
+    filename: 'Cipherly_0.0.6_Build14_Portable.exe',
+    version: '0.0.6',
+    build_number: 14,
+    display_version: 'v0.0.6 (Build 14)',
     platform_key: 'windows',
     os_name: 'Windows',
     name: 'Windows Portable Executable (.exe)',
     description: 'Zero-installation standalone binary. Runs immediately from encrypted USB drives or air-gapped workstations.',
     format: 'PORTABLE EXE',
     arch: 'x64',
-    size: '11.99 MB',
-    sha256: 'AC2DCE19502BAFBCE4974EDA8391C4D83E649141F5F35A0F5404KB65MB000',
-    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly-Portable.exe`,
+    size: '11.39 MB',
+    sha256: 'c19597fac9d64e60b1f4292827a4119ac52f9b90c9012ee3772c4eec66dae850',
+    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly_0.0.6_Build14_Portable.exe`,
     recommended: false,
   },
   {
     id: 'win-msi-latest',
-    filename: 'Cipherly.msi',
-    version: '0.0.1',
-    build_number: 4,
-    display_version: 'v0.0.1 (Build 4)',
+    filename: 'Cipherly_0.0.6_Build14_x64_en-US.msi',
+    version: '0.0.6',
+    build_number: 14,
+    display_version: 'v0.0.6 (Build 14)',
     platform_key: 'windows',
     os_name: 'Windows',
     name: 'Windows Enterprise MSI Package (.msi)',
     description: 'Windows Installer package tailored for enterprise deployment, Group Policy (GPO), and MDM environments.',
     format: 'MSI',
     arch: 'x64',
-    size: '5.28 MB',
-    sha256: 'BA71FDC0B2D2BF0CE4974EDA8391C4D83E649141F5F35A0F5404KB65MB000',
-    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly.msi`,
+    size: '4.65 MB',
+    sha256: 'ee85a5d95b9eb7e8dbcefafb3dbc6400dc0f2455e84d82c4feccb6c6743e3f71',
+    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly_0.0.6_Build14_x64_en-US.msi`,
     recommended: false,
   },
   {
     id: 'android-apk-latest',
-    filename: 'Cipherly.apk',
-    version: '0.0.1',
-    build_number: 4,
-    display_version: 'v0.0.1 (Build 4)',
+    filename: 'cipherly-v0.0.6-b14-app-universal-release.apk',
+    version: '0.0.6',
+    build_number: 14,
+    display_version: 'v0.0.6 (Build 14)',
     platform_key: 'android',
     os_name: 'Android',
     name: 'Android Universal Release APK (.apk)',
     description: 'Native mobile build with hardware-backed WebCrypto, biometric vault unlock, camera QR scanner, and safe-zone layouts.',
     format: 'APK',
     arch: 'Universal (ARM64/v7a/x86_64)',
-    size: '14.83 MB',
-    sha256: '7E604F98E16BCDFBE4974EDA8391C4D83E649141F5F35A0F5404KB65MB000',
-    url: `${DOWNLOAD_API_BASE}/cipherly/Cipherly.apk`,
+    size: '14.63 MB',
+    sha256: '63694ca9b262aeedbd3c236c333ff35a19359e5d50f639ae54862d5a1396fdea',
+    url: `${DOWNLOAD_API_BASE}/cipherly/cipherly-v0.0.6-b14-app-universal-release.apk`,
     recommended: false,
   },
 ];
@@ -188,9 +196,7 @@ const parseArtifactsFromRelease = (release, userOS) => {
       format = 'DEB';
     }
 
-    const downloadUrl = (art.url || `${DOWNLOAD_API_BASE}/cipherly/${fn}`).startsWith('http')
-      ? art.url || `${DOWNLOAD_API_BASE}/cipherly/${fn}`
-      : `${DOWNLOAD_API_BASE}${art.url.startsWith('/') ? '' : '/'}${art.url}`;
+    const downloadUrl = sanitizeDownloadUrl(art.url, fn);
 
     const isRecommended =
       (userOS === 'Windows' && format === 'NSIS EXE') ||
@@ -223,13 +229,13 @@ export function AppProvider({ children }) {
   const [userOS, setUserOS] = useState('Windows');
   const [artifacts, setArtifacts] = useState(DEFAULT_ARTIFACTS);
   const [allReleases, setAllReleases] = useState([]);
-  const [availableVersions, setAvailableVersions] = useState(['0.0.1']);
-  const [selectedVersion, setSelectedVersion] = useState('0.0.1');
-  const [latestVersion, setLatestVersion] = useState('0.0.1');
-  const [latestBuild, setLatestBuild] = useState(4);
+  const [availableVersions, setAvailableVersions] = useState(['0.0.6', '0.0.5']);
+  const [selectedVersion, setSelectedVersion] = useState('0.0.6');
+  const [latestVersion, setLatestVersion] = useState('0.0.6');
+  const [latestBuild, setLatestBuild] = useState(14);
   const [isLoadingDownloads, setIsLoadingDownloads] = useState(true);
   const [apiConnected, setApiConnected] = useState(false);
-  const [apiHost, setApiHost] = useState('downloads.nexusec.space');
+  const [apiHost, setApiHost] = useState('downloads.orientis.digital');
 
   // Detect Operating System
   useEffect(() => {
